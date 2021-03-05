@@ -1,15 +1,10 @@
-import React from "react";
-import { MDBJumbotron, MDBContainer } from "mdbreact";
+import './App.css';
+import Routed from "./components/Routed";
 
-const JumbotronPage = () => {
+const App = () => {
   return (
-    <MDBJumbotron fluid>
-      <MDBContainer>
-        <h2 className="display-4">Fluid jumbotron</h2>
-        <p className="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
-      </MDBContainer>
-    </MDBJumbotron>
+    <Routed/>
   )
 }
 
-export default JumbotronPage;
+export default App;

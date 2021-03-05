@@ -1,0 +1,13 @@
+a {
+  margin: auto;
+  color: hsla(0,0%,100%,.5);
+}
+
+a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+a.active {
+  color: white;
+}
