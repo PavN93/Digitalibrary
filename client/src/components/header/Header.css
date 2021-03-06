@@ -1,5 +1,5 @@
 a {
-  margin: auto;
+  margin: 5px;
   color: hsla(0,0%,100%,.5);
 }
 
@@ -10,4 +10,8 @@ a:hover {
 
 a.active {
   color: white;
+}
+
+.bg-custom {
+  background-color: rgb(38, 70, 83);
 }
