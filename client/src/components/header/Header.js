@@ -4,7 +4,7 @@ import { NavLink } from 'react-router-dom';
 // import { useState, useEffect } from 'react';
 
 const Header = () => {
-  
+
   return (
     <Navbar bg='custom' variant='dark' expand='lg'>
       <Container>

@@ -12,7 +12,7 @@ const SiteContextProvider = ({ children }) => {
       console.log(payload);
       // setSearchResults(payload);
     } catch (err) {
-      console.log('Error on fetch:', error);
+      console.log('Error on fetch:', err);
       throw err;
     }
   }
