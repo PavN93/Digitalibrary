@@ -6,7 +6,7 @@ import SiteContext from '../../siteContext/SiteContext';
 
 const Header = () => {
 
-  const { setInputValue, fetchResults } = useContext(SiteContext);
+  const { setInputValue, handleFetchGoogleApi } = useContext(SiteContext);
 
   const onType = (data) => {
     setInputValue(data.target.value);
@@ -24,7 +24,7 @@ const Header = () => {
           </Nav>
           <Form inline>
             <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={onType}/>
-            <Button variant='outline-warning' onClick={fetchResults}>Search</Button>
+            <Button variant='outline-warning' onClick={handleFetchGoogleApi}>Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
