@@ -1,3 +1,9 @@
 .card-img {
   max-width: 100%;
 }
+
+
+footer a {
+  color: blue;
+  margin: 0;
+}

@@ -11,9 +11,8 @@ const SearchPage = () => {
   return (
     <Container className='searchResults'>
       {searchResults.map((result) => (
-        <ResultCard data={result}/>
+        <ResultCard key={result.id} data={result}/>
       ))}
-      <ResultCard/>
     </Container>
   )
 }
