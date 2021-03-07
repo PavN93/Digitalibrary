@@ -4,3 +4,7 @@
   border-radius: 20px;
   background-color: rgba(40, 114, 113, 0.7);
 }
+
+.library h1 {
+  text-align: center;
+}

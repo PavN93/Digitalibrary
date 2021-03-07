@@ -8,8 +8,13 @@ const Header = () => {
 
   const { setInputValue, handleFetchGoogleApi } = useContext(SiteContext);
 
-  const onType = (data) => {
-    setInputValue(data.target.value);
+  const onType = (event) => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleFetchGoogleApi();
+    } else {
+      setInputValue(event.target.value);
+    }
   }
 
   return (
@@ -23,7 +28,7 @@ const Header = () => {
             <NavLink to='/search'>Search</NavLink>
           </Nav>
           <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={onType}/>
+            <FormControl type='text' placeholder='Search' className='mr-sm-2' onKeyDown={onType}/>
             <Button variant='outline-warning' onClick={handleFetchGoogleApi}>Search</Button>
           </Form>
         </Navbar.Collapse>
