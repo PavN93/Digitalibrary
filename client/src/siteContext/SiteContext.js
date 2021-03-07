@@ -50,9 +50,8 @@ const SiteContextProvider = ({ children }) => {
       setDbFetching(true);
       const response = await fetch('/api/books');
       const payload = await response.json();
-      console.log('db content:', payload);
-      setDbFetching(false);
       setDbLibrary(payload);
+      setDbFetching(false);
     } catch (err) {
       console.log('Error on DB query:', err);
     }

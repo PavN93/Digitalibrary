@@ -14,15 +14,19 @@ router.get('/books', async (req, res) => {
 router.post('/books', async ({ body }, res) => {
   try {
     await Book.create(body);
-    res.json({ saved: 'Your book is saved!' });
+    res.json({ message: 'Your book is saved!' });
   } catch (err) {
-    res.json({error: `Could not save: ${err}`});
+    res.json({ error: `Could not save: ${err}`});
   }
 });
 
-router.delete('/books/:id', (req, res) => {
-  console.log('delete record endpoint hit');
-  res.json({ message: 'record has been deleted' });
+router.delete('/books/:id', async (req, res) => {
+  try {
+    await Book.deleteOne({ _id: req.params.id });
+    res.json({ message: 'Book deleted' });
+  } catch (err) {
+    res.json({ error: `Error on delete: ${err}` });
+  }
 });
 
 

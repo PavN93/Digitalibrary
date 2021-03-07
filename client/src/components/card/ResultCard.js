@@ -1,10 +1,43 @@
 import './ResultCard.css';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import { useContext, useState } from 'react';
 import Loading from '../loading/Loading';
+import SiteContext from '../../siteContext/SiteContext';
 
+const ResultCard = ({ data }) => {
+  const { _id, authors, title, description, image, link } = data;
+  const { fetchDbResults } = useContext(SiteContext);
+  const [ saving, setSaving ] = useState(false);
+  const [ deleting, setDeleting ] = useState(false);
 
-const ResultCard = ({ data, save, saving }) => {
-  const { authors, title, description, image, link } = data;
+  const saveBookToDb = async (data) => {
+    setSaving(true);
+    try {
+      await fetch( '/api/books', {
+        method: 'POST',
+        headers: { 'content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      await fetchDbResults();
+    } catch (err) {
+      console.log('Error on save:', err)
+    }
+    setSaving(false);
+  }
+
+  const deleteFromDb = async (id) => {
+    setDeleting(true);
+    try {
+      await fetch(`/api/books/${id}`, {
+        method: 'DELETE',
+      })
+      await fetchDbResults();
+    } catch (err) {
+      console.log('Error on delete:', err);
+    }
+    setDeleting(false);
+  }
+
   return (
     <Card>
       <Row>
@@ -14,14 +47,16 @@ const ResultCard = ({ data, save, saving }) => {
         <Col md={9} sm={8} className='resultData'>
           <Card.Header>
             <Row>
-              <Col></Col>
-              <Col></Col>
+              <Col sm={12} md={10}>
+                <h4>{title}</h4>
+              </Col>
+              <Col sm={12} md={2}>
+                {saving ? (<Loading />) :
+                  (<Button variant='outline-success' onClick={() => saveBookToDb(data)}>Save</Button>)
+                }
+                <Button variant='outline-danger' onClick={() => deleteFromDb(_id)}>Remove</Button>
+              </Col>
             </Row>
-            <h4>{title}</h4>
-            {saving ? (<Loading style={{display: "inline-block", float: "right"}}/>) : 
-            (<Button variant='outline-success' onClick={() => save(data)}>Save to library</Button>)
-            }
-            {/* <Button variant='outline-danger'>Remove from library</Button> */}
           </Card.Header>
           <Card.Body>
             <blockquote className='blockquote mb-0'>
