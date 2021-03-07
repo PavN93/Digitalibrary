@@ -3,10 +3,15 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "if-env NODE_ENV=production && npm run prod || npm run dev",
+    "prod": " cd server && node server.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "client": "cd client && npm run start",
     "server": "cd server && npx nodemon server.js",
-    "dev": "concurrently --kill-others-on-fail 'npm:server' 'npm:client'"
+    "dev": "concurrently --kill-others-on-fail 'npm:server' 'npm:client'",
+    "install": "cd client && npm install",
+    "build": "cd client && npm run build",
+    "heroku-postbuild": "npm run build"
   },
   "keywords": [],
   "author": "",
