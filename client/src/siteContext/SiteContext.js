@@ -28,7 +28,7 @@ const SiteContextProvider = ({ children }) => {
       const neededBooksData = [];
       for (const result of payload.items){
         const filteredData = {
-          id: result.id,
+          _id: result.id,
           authors: result.volumeInfo.authors,
           title: result.volumeInfo.title,
           description: result.volumeInfo.description,

@@ -15,7 +15,7 @@ const LibPage = () => {
           (<h1>No books saved!</h1>) : dbFetching ?
           (<Loading />) :
           dbLibrary.map((book) => (
-            <Library key={book.id} data={book} />
+            <Library key={book._id} data={book} />
           ))
       }
     </Container>

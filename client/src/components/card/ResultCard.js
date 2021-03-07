@@ -1,13 +1,11 @@
-import './ResultCard.css'
+import './ResultCard.css';
 import { Card, Row, Col, Button } from 'react-bootstrap';
+import Loading from '../loading/Loading';
 
 
-const ResultCard = ({ data }) => {
-  const { id, authors, title, description, image, link } = data;
+const ResultCard = ({ data, save, saving }) => {
+  const { _id, authors, title, description, image, link } = data;
 
-  const saveBtnClick = (event) => {
-    console.log('book id:', id);
-  }
   return (
     <Card>
       <Row>
@@ -21,7 +19,9 @@ const ResultCard = ({ data }) => {
               <Col></Col>
             </Row>
             <h4>{title}</h4>
-            <Button variant='outline-success' onClick={saveBtnClick}>Save to library</Button>
+            {saving ? (<Loading style={{display: "inline-block", float: "right"}}/>) : 
+            (<Button variant='outline-success' onClick={() => save(data)}>Save to library</Button>)
+            }
             {/* <Button variant='outline-danger'>Remove from library</Button> */}
           </Card.Header>
           <Card.Body>
