@@ -1,14 +1,22 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config({ path:'../.env' });
+const path = require('path');
 
 const db = process.env.MONGODB_URI || 'mongodb://localhost/googlebooks';
 const PORT = process.env.PORT || 3001
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 app.use('/api', require('./routes/api-routes'));
+
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+});
+
 
 // Connect to db, start server, handle error
 (async () => {
