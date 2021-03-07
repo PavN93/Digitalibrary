@@ -11,7 +11,7 @@
     "dev": "concurrently --kill-others-on-fail 'npm:server' 'npm:client'",
     "install": "cd client && npm install",
     "build": "cd client && npm run build",
-    "heroku-postbuild": "npm run build"
+    "heroku-postbuild": "cd client && npm install && npm run build"
   },
   "keywords": [],
   "author": "",
