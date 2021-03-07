@@ -3,14 +3,16 @@ import { useState, createContext } from 'react';
 const SiteContext = createContext();
 
 const SiteContextProvider = ({ children }) => {
-  const [ searchResults, setSearchResults] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [inputValue, setInputValue] = useState('');
 
-  const fetchResults = async (url) => {
+  const fetchResults = async () => {
     try {
+      const url = `https://www.googleapis.com/books/v1/volumes?q=${inputValue}`;
       const response = await fetch(url);
       const payload = await response.json();
-      console.log(payload);
-      // setSearchResults(payload);
+      console.log(payload.items);
+      setSearchResults(payload.items);
     } catch (err) {
       console.log('Error on fetch:', err);
       throw err;
@@ -18,7 +20,12 @@ const SiteContextProvider = ({ children }) => {
   }
 
   return (
-    <SiteContext.Provider value={{ searchResults, fetchResults }}>
+    <SiteContext.Provider value={{
+      searchResults,
+      fetchResults,
+      inputValue,
+      setInputValue
+    }}>
       {children}
     </SiteContext.Provider>
   )

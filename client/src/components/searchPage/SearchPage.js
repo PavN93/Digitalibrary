@@ -5,10 +5,14 @@ import SiteContext from '../../siteContext/SiteContext';
 import { useContext } from 'react';
 
 const SearchPage = () => {
-  const { searchResults, fetchResults } = useContext(SiteContext);
-  console.log(searchResults);
+
+  const { searchResults } = useContext(SiteContext);
+
   return (
     <Container className='searchResults'>
+      {searchResults.map((result) => (
+        <ResultCard data={result}/>
+      ))}
       <ResultCard/>
     </Container>
   )

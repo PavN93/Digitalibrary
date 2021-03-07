@@ -1,9 +1,16 @@
 import './Header.css';
 import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
 import { NavLink } from 'react-router-dom';
-// import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import SiteContext from '../../siteContext/SiteContext';
 
 const Header = () => {
+
+  const { setInputValue, fetchResults } = useContext(SiteContext);
+
+  const onType = (data) => {
+    setInputValue(data.target.value);
+  }
 
   return (
     <Navbar bg='custom' variant='dark' expand='lg'>
@@ -16,8 +23,8 @@ const Header = () => {
             <NavLink to='/search'>Search</NavLink>
           </Nav>
           <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2'/>
-            <Button variant='outline-warning'>Search</Button>
+            <FormControl type='text' placeholder='Search' className='mr-sm-2' onChange={onType}/>
+            <Button variant='outline-warning' onClick={fetchResults}>Search</Button>
           </Form>
         </Navbar.Collapse>
       </Container>
