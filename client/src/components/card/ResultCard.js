@@ -6,14 +6,13 @@ import SiteContext from '../../siteContext/SiteContext';
 
 const ResultCard = ({ data }) => {
   const { _id, authors, title, description, image, link } = data;
-  const { fetchDbResults } = useContext(SiteContext);
-  const [ saving, setSaving ] = useState(false);
-  const [ deleting, setDeleting ] = useState(false);
-
+  const { fetchDbResults, dbLibrary } = useContext(SiteContext);
+  const [queryInProgress, setQueryInProgress] = useState(false);
+  
   const saveBookToDb = async (data) => {
-    setSaving(true);
+    setQueryInProgress(true);
     try {
-      await fetch( '/api/books', {
+      await fetch('/api/books', {
         method: 'POST',
         headers: { 'content-Type': 'application/json' },
         body: JSON.stringify(data),
@@ -22,11 +21,11 @@ const ResultCard = ({ data }) => {
     } catch (err) {
       console.log('Error on save:', err)
     }
-    setSaving(false);
+    setQueryInProgress(false);
   }
 
   const deleteFromDb = async (id) => {
-    setDeleting(true);
+    setQueryInProgress(true);
     try {
       await fetch(`/api/books/${id}`, {
         method: 'DELETE',
@@ -35,7 +34,7 @@ const ResultCard = ({ data }) => {
     } catch (err) {
       console.log('Error on delete:', err);
     }
-    setDeleting(false);
+    setQueryInProgress(false);
   }
 
   return (
@@ -51,10 +50,15 @@ const ResultCard = ({ data }) => {
                 <h4>{title}</h4>
               </Col>
               <Col sm={12} md={2}>
-                {saving ? (<Loading />) :
-                  (<Button variant='outline-success' onClick={() => saveBookToDb(data)}>Save</Button>)
+
+                {queryInProgress ? (<Loading />) :
+                dbLibrary.some(book => book._id === _id) ?
+                (<Button variant='outline-danger' onClick={() => deleteFromDb(_id)}>Remove</Button>) :
+                (<Button variant='outline-success' onClick={() => saveBookToDb(data)}>Save</Button>)
+                //   (<Button variant='outline-success' onClick={() => saveBookToDb(data)}>Save</Button>)
+                // }
+                // <Button variant='outline-danger' onClick={() => deleteFromDb(_id)}>Remove</Button>
                 }
-                <Button variant='outline-danger' onClick={() => deleteFromDb(_id)}>Remove</Button>
               </Col>
             </Row>
           </Card.Header>
