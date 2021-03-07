@@ -4,8 +4,7 @@ import Loading from '../loading/Loading';
 
 
 const ResultCard = ({ data, save, saving }) => {
-  const { _id, authors, title, description, image, link } = data;
-
+  const { authors, title, description, image, link } = data;
   return (
     <Card>
       <Row>

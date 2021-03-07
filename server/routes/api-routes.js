@@ -2,17 +2,21 @@ const router = require('express').Router();
 const Book = require('../models/Book')
 
 
-router.get('/books', (req, res) => {
-  console.log('get books endpoint hit');
-  res.json({ message: 'here are saved books' });
+router.get('/books', async (req, res) => {
+  try {
+    const results = await Book.find();
+    res.json(results);
+  } catch (err) {
+    res.json({ error: `Error on DB read: ${err}`});
+  }
 });
 
 router.post('/books', async ({ body }, res) => {
   try {
-    const saved = await Book.create(body);
+    await Book.create(body);
     res.json({ saved: 'Your book is saved!' });
   } catch (err) {
-    res.json({error: `Could not save: ${err}`})
+    res.json({error: `Could not save: ${err}`});
   }
 });
 
