@@ -1,5 +1,5 @@
 import './LibPage.css'
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import SiteContext from '../../siteContext/SiteContext';
 import { Container } from 'react-bootstrap';
 import Library from '../library/Library';
@@ -7,13 +7,13 @@ import Loading from '../loading/Loading';
 
 const LibPage = () => {
 
-  const { fetchDbResults, dbFetching, dbLibrary } = useContext(SiteContext);
+  const { dbFetching, dbLibrary } = useContext(SiteContext);
 
-  useEffect(() => {
-    (async () => {
-      await fetchDbResults();
-    })();
-  }, [])
+  // useEffect(() => {
+  //   (async () => {
+  //     await fetchDbResults();
+  //   })();
+  // }, [])
 
   return (
     <Container className='library'>

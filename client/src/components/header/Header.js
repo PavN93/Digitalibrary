@@ -1,6 +1,6 @@
 import './Header.css';
 import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
-import { NavLink } from 'react-router-dom';
+import { NavLink, Link } from 'react-router-dom';
 import { useContext } from 'react';
 import SiteContext from '../../siteContext/SiteContext';
 
@@ -8,7 +8,7 @@ const Header = () => {
 
   const { setInputValue, handleFetchGoogleApi } = useContext(SiteContext);
 
-  const onType = (event) => {
+  const OnType = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       handleFetchGoogleApi();
@@ -28,8 +28,8 @@ const Header = () => {
             <NavLink to='/search'>Search</NavLink>
           </Nav>
           <Form inline>
-            <FormControl type='text' placeholder='Search' className='mr-sm-2' onKeyDown={onType}/>
-            <Button variant='outline-warning' onClick={handleFetchGoogleApi}>Search</Button>
+            <FormControl type='text' placeholder='Search' className='mr-sm-2' onKeyDown={OnType}/>
+            <Button variant='outline-warning' onClick={handleFetchGoogleApi}><Link to='/search'>Search</Link></Button>
           </Form>
         </Navbar.Collapse>
       </Container>
