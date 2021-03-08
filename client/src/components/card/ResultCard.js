@@ -67,7 +67,7 @@ const ResultCard = ({ data }) => {
               <p>{description && (description)}</p>
               <footer className='blockquote-footer'>
                 {authors && (<p>Authors: {authors}</p>)}
-                {link ? (<a href={link} target='_blank' rel='noreferrer'>Read more</a>) : (null)}
+                {link ? (<Button variant="outline-info" href={link} target='_blank' rel='noreferrer'>Read more</Button>) : (null)}
               </footer>
             </blockquote>
           </Card.Body>

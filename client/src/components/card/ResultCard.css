@@ -2,12 +2,6 @@
   max-width: 100%;
 }
 
-
-footer a {
-  color: blue;
-  margin: 0;
-}
-
 .card-header .loading { 
   display:inline-block;
 }

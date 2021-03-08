@@ -24,7 +24,8 @@ Search page is the place where the user can search for books and save results to
 ![screenshot1](./assets/Screenshot-2.png)    
 The app allows user to switch between both pages and still keep track on the recent search results.     
 ## Issues    
-* The issue I noticed is that despite implementing search on Enter key press, the route won't switch automatically when the event occurs. Attempts to redirect manually only work to certain degree, causing the whole page to reload and thus, loosing the typed search phrase. The feature still works with manual search button, the user gets redirected properly.    
+* The issue I noticed is that despite implementing search on Enter key press, the route won't switch automatically when the event occurs. Attempts to redirect manually only work to certain degree, causing the whole page to reload and thus, loosing the typed search phrase. The feature still works with manual search button, the user gets redirected properly.      
+* Another issue spotted was the error showing up if the google api doesn't provide thumbnail url. This is pure javascript fix, and will get it sorted soon.    
 ## Improvements    
 * First improvement would include fixing an issue mentioned above    
 * Another potential improvements would be making the library page not fully re-render on book remove. At the moment, the whole component gets re-rendered causing the library to show its initial state.     
