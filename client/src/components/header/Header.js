@@ -1,17 +1,19 @@
 import './Header.css';
 import { Navbar, Nav, Form, FormControl, Button, Container } from 'react-bootstrap';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useHistory } from 'react-router-dom';
 import { useContext } from 'react';
 import SiteContext from '../../siteContext/SiteContext';
 
 const Header = () => {
 
   const { setInputValue, handleFetchGoogleApi } = useContext(SiteContext);
-
+  const location = useHistory();
+  
   const OnType = (event) => {
     if (event.key === 'Enter') {
       event.preventDefault();
       handleFetchGoogleApi();
+      location.push('/search');
     } else {
       setInputValue(event.target.value);
     }

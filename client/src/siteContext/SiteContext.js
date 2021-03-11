@@ -32,7 +32,9 @@ const SiteContextProvider = ({ children }) => {
           authors: result.volumeInfo.authors,
           title: result.volumeInfo.title,
           description: result.volumeInfo.description,
-          image: result.volumeInfo.imageLinks.thumbnail,
+          image: result.volumeInfo.imageLinks ?
+          result.volumeInfo.imageLinks.thumbnail:
+          'https://picsum.photos/200/300',
           link: result.volumeInfo.infoLink
         };
         neededBooksData.push(filteredData);
